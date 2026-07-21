@@ -1,22 +1,820 @@
 [
-  {
-    "id": "demo-oceans",
-    "title": "Ejemplo en la nube — Progresión Do-Sol-Lam-Fa",
-    "artist": "StrumFree",
-    "videoId": null,
-    "key": "C",
-    "bpm": 92,
-    "tab": "Patrón de rasgueo sugerido:  D  D U  U D U   (D=abajo, U=arriba)",
-    "chords": [
-      {"t": 0, "chord": "C", "lyric": "", "section": "Verso"},
-      {"t": 2, "chord": "G", "lyric": ""},
-      {"t": 4, "chord": "Am", "lyric": ""},
-      {"t": 6, "chord": "F", "lyric": ""},
-      {"t": 8, "chord": "C", "lyric": ""},
-      {"t": 10, "chord": "G", "lyric": ""},
-      {"t": 12, "chord": "Am", "lyric": ""},
-      {"t": 14, "chord": "F", "lyric": ""},
-      {"t": 16, "chord": "N", "lyric": ""}
-    ]
-  }
+ {
+  "id": "demo-oceans",
+  "title": "Ejemplo en la nube — Progresión Do-Sol-Lam-Fa",
+  "artist": "StrumFree",
+  "videoId": null,
+  "key": "C",
+  "bpm": 92,
+  "tab": "Patrón de rasgueo sugerido:  D  D U  U D U   (D=abajo, U=arriba)",
+  "chords": [
+   {
+    "t": 0,
+    "chord": "C",
+    "lyric": "",
+    "section": "Verso"
+   },
+   {
+    "t": 2,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 4,
+    "chord": "Am",
+    "lyric": ""
+   },
+   {
+    "t": 6,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 8,
+    "chord": "C",
+    "lyric": ""
+   },
+   {
+    "t": 10,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 12,
+    "chord": "Am",
+    "lyric": ""
+   },
+   {
+    "t": 14,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 16,
+    "chord": "N",
+    "lyric": ""
+   }
+  ]
+ },
+ {
+  "id": "IpFX2vq8HKw",
+  "title": "yung kai - blue (official music video)",
+  "artist": "YouTube",
+  "videoId": "IpFX2vq8HKw",
+  "key": "E",
+  "bpm": 99.4,
+  "tab": "",
+  "chords": [
+   {
+    "t": 0.02,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 1.28,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 4.37,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 6.2,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 8.06,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 9.89,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 11.75,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 13.58,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 15.44,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 17.9,
+    "chord": "F#",
+    "lyric": ""
+   },
+   {
+    "t": 18.48,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 19.11,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 20.97,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 22.8,
+    "chord": "G#m",
+    "lyric": ""
+   },
+   {
+    "t": 23.43,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 27.12,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 27.7,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 28.35,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 28.98,
+    "chord": "G#m",
+    "lyric": ""
+   },
+   {
+    "t": 29.58,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 30.19,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 33.9,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 35.76,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 38.2,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 39.43,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 41.29,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 43.12,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 45.6,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 46.81,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 48.67,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 51.13,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 52.96,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 54.17,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 56.03,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 58.51,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 60.35,
+    "chord": "Em",
+    "lyric": ""
+   },
+   {
+    "t": 60.98,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 61.58,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 62.16,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 62.81,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 63.44,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 64.67,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 65.9,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 67.73,
+    "chord": "Em",
+    "lyric": ""
+   },
+   {
+    "t": 68.34,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 68.96,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 69.59,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 70.19,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 70.82,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 72.68,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 74.49,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 76.35,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 78.2,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 80.06,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 82.5,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 83.73,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 85.59,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 87.45,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 89.28,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 91.74,
+    "chord": "F#",
+    "lyric": ""
+   },
+   {
+    "t": 92.35,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 92.97,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 94.81,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 97.27,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 98.5,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 100.36,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 102.21,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 104.05,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 105.88,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 108.37,
+    "chord": "F#m",
+    "lyric": ""
+   },
+   {
+    "t": 110.2,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 110.71,
+    "chord": "G#m",
+    "lyric": ""
+   },
+   {
+    "t": 111.22,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 111.76,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 113.59,
+    "chord": "Em",
+    "lyric": ""
+   },
+   {
+    "t": 114.2,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 114.8,
+    "chord": "F#",
+    "lyric": ""
+   },
+   {
+    "t": 115.43,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 116.05,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 116.66,
+    "chord": "N",
+    "lyric": ""
+   },
+   {
+    "t": 117.28,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 118.51,
+    "chord": "Em",
+    "lyric": ""
+   },
+   {
+    "t": 120.35,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 120.98,
+    "chord": "Em",
+    "lyric": ""
+   },
+   {
+    "t": 121.56,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 122.18,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 122.81,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 125.29,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 126.53,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 128.36,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 130.19,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 132.08,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 133.91,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 137.44,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 139.74,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 140.97,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 142.78,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 144.64,
+    "chord": "C#",
+    "lyric": ""
+   },
+   {
+    "t": 145.29,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 147.01,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 148.93,
+    "chord": "Em",
+    "lyric": ""
+   },
+   {
+    "t": 149.56,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 150.16,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 150.77,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 151.44,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 152.04,
+    "chord": "Am",
+    "lyric": ""
+   },
+   {
+    "t": 153.9,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 156.36,
+    "chord": "Em",
+    "lyric": ""
+   },
+   {
+    "t": 156.97,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 157.59,
+    "chord": "G#",
+    "lyric": ""
+   },
+   {
+    "t": 158.2,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 158.82,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 159.43,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 161.29,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 163.75,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 165.58,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 166.81,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 168.67,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 170.5,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 172.36,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 174.2,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 176.05,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 177.89,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 179.75,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 181.58,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 183.44,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 185.9,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 187.13,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 188.96,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 190.82,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 193.28,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 194.51,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 196.35,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 198.21,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 200.67,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 201.9,
+    "chord": "G#m",
+    "lyric": ""
+   },
+   {
+    "t": 204.03,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 205.87,
+    "chord": "B",
+    "lyric": ""
+   },
+   {
+    "t": 207.68,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 211.79,
+    "chord": "C#m",
+    "lyric": ""
+   },
+   {
+    "t": 212.39,
+    "chord": "Am",
+    "lyric": ""
+   },
+   {
+    "t": 213.0,
+    "chord": "D#",
+    "lyric": ""
+   },
+   {
+    "t": 213.6,
+    "chord": "E",
+    "lyric": ""
+   },
+   {
+    "t": 214.2,
+    "chord": "D#",
+    "lyric": ""
+   },
+   {
+    "t": 214.81,
+    "chord": "G#m",
+    "lyric": ""
+   },
+   {
+    "t": 215.41,
+    "chord": "N",
+    "lyric": ""
+   },
+   {
+    "t": 216.6,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 217.2,
+    "chord": "N",
+    "lyric": ""
+   },
+   {
+    "t": 217.78,
+    "chord": "G#",
+    "lyric": ""
+   },
+   {
+    "t": 219.54,
+    "chord": "N",
+    "lyric": ""
+   }
+  ]
+ }
 ]
