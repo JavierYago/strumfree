@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0f1115">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>StrumFree</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1f232c; --line:#2a2f3a;
+    --text:#e9edf5; --muted:#98a2b3; --accent:#ff7a45; --accent2:#4dd0a7;
+    --chord:#ffd166; --active:#ff7a45;
+    --radius:16px; --safe: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{margin:0; padding:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    overscroll-behavior:none}
+  body{max-width:820px; margin:0 auto; padding-bottom:calc(96px + var(--safe))}
+  header{position:sticky; top:0; z-index:20; background:linear-gradient(180deg,var(--bg),rgba(15,17,21,.86));
+    backdrop-filter:blur(8px); padding:12px 14px 8px; border-bottom:1px solid var(--line)}
+  .brand{display:flex; align-items:center; gap:8px; font-weight:800; letter-spacing:.3px}
+  .brand .logo{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#ff4d6d);
+    display:flex;align-items:center;justify-content:center;font-size:15px}
+  .brand small{font-weight:600;color:var(--muted);font-size:11px;margin-left:auto}
+  .row{display:flex; gap:8px; align-items:center}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:12px; margin:12px 14px}
+  input[type=text]{flex:1; background:var(--panel2); border:1px solid var(--line); color:var(--text);
+    border-radius:12px; padding:11px 12px; font-size:15px; outline:none}
+  input[type=text]:focus{border-color:var(--accent)}
+  button{background:var(--panel2); color:var(--text); border:1px solid var(--line);
+    border-radius:12px; padding:10px 12px; font-size:14px; font-weight:600; cursor:pointer}
+  button.primary{background:var(--accent); border-color:var(--accent); color:#111}
+  button.ghost{background:transparent}
+  button:active{transform:scale(.97)}
+  .hint{color:var(--muted); font-size:12px; line-height:1.5}
+  #player-wrap{position:relative; width:100%; aspect-ratio:16/9; background:#000; border-radius:14px; overflow:hidden}
+  #yt{position:absolute; inset:0; width:100%; height:100%; border:0}
+  .noplayer{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:13px;text-align:center;padding:20px}
+  .nowbar{display:flex; align-items:stretch; gap:10px; margin-top:10px}
+  .nowchord{flex:0 0 auto; min-width:96px; background:var(--panel2); border:1px solid var(--line); border-radius:14px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px}
+  .nowchord .lbl{font-size:11px; color:var(--muted)}
+  .nowchord .val{font-size:30px; font-weight:800; color:var(--active); line-height:1.05}
+  .nextchords{flex:1; display:flex; gap:8px; align-items:center; overflow:hidden}
+  .pill{flex:0 0 auto; background:var(--panel2); border:1px solid var(--line); border-radius:10px;
+    padding:6px 10px; font-weight:700; color:var(--chord); font-size:16px; opacity:.85}
+  .timeline{margin:0; padding:2px 0}
+  .line{display:flex; flex-wrap:wrap; gap:6px 10px; padding:9px 6px; border-radius:10px; align-items:baseline}
+  .line.section-label{color:var(--accent2); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.5px; padding-bottom:2px}
+  .beat{display:inline-flex; flex-direction:column; align-items:center; min-width:34px}
+  .beat .ch{font-weight:800; color:var(--chord); font-size:19px; transition:color .1s, transform .1s}
+  .beat .ly{color:var(--muted); font-size:12px; min-height:14px}
+  .beat.active .ch{color:var(--active); transform:translateY(-1px); text-shadow:0 0 14px rgba(255,122,69,.6)}
+  .beat.past .ch{color:#6b7280}
+  .diagram-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(84px,1fr)); gap:10px}
+  .diagram{background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:8px 6px 6px; text-align:center}
+  .diagram .name{font-weight:800; color:var(--chord); font-size:15px; margin-bottom:4px}
+  .diagram svg{display:block; margin:0 auto}
+  .controls{position:fixed; left:0; right:0; bottom:0; z-index:30;
+    background:linear-gradient(180deg,rgba(15,17,21,.4),var(--bg) 40%); padding:8px 12px calc(10px + var(--safe));
+    border-top:1px solid var(--line); max-width:820px; margin:0 auto}
+  .controls .row{justify-content:space-between}
+  .transport button{width:46px;height:46px;border-radius:50%;font-size:18px;padding:0}
+  .transport .play{width:58px;height:58px;background:var(--accent);border-color:var(--accent);color:#111;font-size:22px}
+  .seg{display:flex; background:var(--panel2); border:1px solid var(--line); border-radius:12px; overflow:hidden}
+  .seg button{border:0;border-radius:0;background:transparent;padding:8px 10px;min-width:38px}
+  .seg .mid{min-width:66px;color:var(--muted);font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .tabs{display:flex;gap:6px;margin:0 14px}
+  .tabs button{flex:1;background:transparent;border:0;border-bottom:2px solid transparent;color:var(--muted);border-radius:0;padding:10px 0;font-weight:700}
+  .tabs button.on{color:var(--text);border-bottom-color:var(--accent)}
+  .view{display:none}
+  .view.on{display:block}
+  .tab-pre{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;
+    overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.5;color:#d7e0ee;white-space:pre}
+  .meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .title{font-weight:800;font-size:17px}
+  .sub{color:var(--muted);font-size:12px}
+  .badge{font-size:11px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 8px}
+  .editbtn{font-size:12px;padding:6px 8px}
+  dialog{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:16px;max-width:340px;width:92%}
+  dialog::backdrop{background:rgba(0,0,0,.6)}
+  .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+  select{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px}
+  .toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);background:#111;border:1px solid var(--line);
+    color:var(--text);padding:10px 14px;border-radius:12px;font-size:13px;z-index:50;opacity:0;transition:opacity .25s;pointer-events:none}
+  .toast.show{opacity:1}
+  a{color:var(--accent2)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <span class="logo">🎸</span> StrumFree
+    <small id="conn">local</small>
+  </div>
+</header>
+
+<div class="card">
+  <div class="row">
+    <input id="url" type="text" placeholder="Pega un enlace de YouTube…" inputmode="url" autocomplete="off">
+    <button class="primary" id="loadBtn">Cargar</button>
+  </div>
+  <div class="row" style="margin-top:8px;justify-content:space-between">
+    <button class="ghost" id="libBtn">📚 Biblioteca</button>
+    <span class="hint">o abre una canción ya analizada</span>
+  </div>
+</div>
+
+<div class="card" id="playerCard">
+  <div class="meta" style="margin-bottom:8px">
+    <div>
+      <div class="title" id="songTitle">Sin canción</div>
+      <div class="sub" id="songSub">Pega un enlace o abre la biblioteca</div>
+    </div>
+    <span class="badge" id="keyBadge">—</span>
+  </div>
+  <div id="player-wrap"><div class="noplayer" id="noplayer">El vídeo de YouTube aparecerá aquí</div><div id="yt"></div></div>
+
+  <div class="nowbar">
+    <div class="nowchord"><span class="lbl">Ahora</span><span class="val" id="nowChord">–</span></div>
+    <div class="nextchords" id="nextChords"></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="on" data-view="chords">Acordes</button>
+  <button data-view="diagrams">Diagramas</button>
+  <button data-view="tab">Tablatura</button>
+</div>
+
+<div class="card">
+  <div class="view on" id="view-chords">
+    <div class="timeline" id="timeline"><div class="hint">Aquí aparecerán los acordes sincronizados con la canción. Toca cualquier acorde para saltar a ese punto.</div></div>
+  </div>
+  <div class="view" id="view-diagrams">
+    <div class="diagram-grid" id="diagrams"></div>
+    <p class="hint" style="margin-top:10px">Diagramas de los acordes que aparecen en la canción. Se recalculan al transponer.</p>
+  </div>
+  <div class="view" id="view-tab">
+    <div class="meta" style="margin-bottom:8px">
+      <span class="sub">Tablatura / fingerstyle (editable)</span>
+      <button class="editbtn" id="editTab">✏️ Editar</button>
+    </div>
+    <div class="tab-pre" id="tab">Sin tablatura para esta canción todavía.</div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="row" style="margin-bottom:8px">
+    <div class="seg" title="Transponer">
+      <button id="trDown">♭</button>
+      <div class="mid" id="trLabel">Tono 0</div>
+      <button id="trUp">♯</button>
+    </div>
+    <div class="seg" title="Cejilla (capo)">
+      <button id="capoDown">–</button>
+      <div class="mid" id="capoLabel">Capo 0</div>
+      <button id="capoUp">+</button>
+    </div>
+    <div class="seg" title="Velocidad">
+      <button id="spDown">–</button>
+      <div class="mid" id="spLabel">1.0×</div>
+      <button id="spUp">+</button>
+    </div>
+  </div>
+  <div class="row transport" style="justify-content:center;gap:16px">
+    <button id="back10" title="-10s">⏪</button>
+    <button class="play" id="playPause">▶</button>
+    <button id="fwd10" title="+10s">⏩</button>
+    <button id="scrollLock" class="ghost" title="Auto-scroll">🔒</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<dialog id="libDlg">
+  <div style="font-weight:800;margin-bottom:8px">📚 Biblioteca</div>
+  <div id="libList" class="hint">Cargando…</div>
+  <div class="modal-actions"><button id="libClose">Cerrar</button></div>
+</dialog>
+
+<dialog id="editDlg">
+  <div style="font-weight:800;margin-bottom:8px">Corregir acorde</div>
+  <div class="hint" style="margin-bottom:8px">Tiempo <span id="editTime"></span></div>
+  <input id="editVal" type="text" placeholder="p.ej. Am, C, G7, Dm7…" style="width:100%">
+  <div class="modal-actions">
+    <button id="editCancel">Cancelar</button>
+    <button class="primary" id="editSave">Guardar</button>
+  </div>
+</dialog>
+
+<script>
+const state = {
+  song: null, transpose: 0, capo: 0, speed: 1.0, autoscroll: true,
+  player: null, ready: false, editingIndex: null,
+};
+const SERVER = (location.protocol === 'http:' || location.protocol === 'https:') ? location.origin : null;
+document.getElementById('conn').textContent = SERVER ? 'servidor' : 'offline';
+
+const NOTES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+function parseChord(ch){
+  const m = ch.match(/^([A-G][#b]?)(.*)$/);
+  if(!m) return null;
+  let root = m[1];
+  let idx = NOTES.indexOf(root);
+  if(idx<0){
+    const flatMap = {'Db':'C#','Eb':'D#','Gb':'F#','Ab':'G#','Bb':'A#','Cb':'B','Fb':'E'};
+    idx = NOTES.indexOf(flatMap[root] || root);
+  }
+  return idx<0?null:{idx, rest:m[2]};
+}
+function transposeChord(ch, semi){
+  if(!ch || ch==='N' || ch==='-') return ch;
+  const p = parseChord(ch);
+  if(!p) return ch;
+  let ni = (p.idx + semi + 1200) % 12;
+  return NOTES[ni] + p.rest;
+}
+
+const SHAPES = {
+  'C':[-1,3,2,0,1,0], 'Cm':[-1,3,5,5,4,3], 'C7':[-1,3,2,3,1,0], 'Cmaj7':[-1,3,2,0,0,0],
+  'D':[-1,-1,0,2,3,2], 'Dm':[-1,-1,0,2,3,1], 'D7':[-1,-1,0,2,1,2], 'Dm7':[-1,-1,0,2,1,1],
+  'E':[0,2,2,1,0,0], 'Em':[0,2,2,0,0,0], 'E7':[0,2,0,1,0,0], 'Em7':[0,2,0,0,0,0],
+  'F':[1,3,3,2,1,1], 'Fm':[1,3,3,1,1,1], 'F7':[1,3,1,2,1,1], 'Fmaj7':[-1,-1,3,2,1,0],
+  'G':[3,2,0,0,0,3], 'Gm':[3,5,5,3,3,3], 'G7':[3,2,0,0,0,1], 'Gmaj7':[3,2,0,0,0,2],
+  'A':[-1,0,2,2,2,0], 'Am':[-1,0,2,2,1,0], 'A7':[-1,0,2,0,2,0], 'Am7':[-1,0,2,0,1,0], 'Amaj7':[-1,0,2,1,2,0],
+  'B':[-1,2,4,4,4,2], 'Bm':[-1,2,4,4,3,2], 'B7':[-1,2,1,2,0,2], 'Bm7':[-1,2,0,2,0,2],
+  'C#':[-1,4,3,1,2,1],'D#':[-1,-1,1,3,4,3],'F#':[2,4,4,3,2,2],'G#':[4,6,6,5,4,4],'A#':[-1,1,3,3,3,1],
+  'C#m':[-1,4,6,6,5,4],'D#m':[-1,-1,1,3,4,2],'F#m':[2,4,4,2,2,2],'G#m':[4,6,6,4,4,4],'A#m':[-1,1,3,3,2,1],
+};
+function barreShape(rootIdx, minor, seventh){
+  const fE=(rootIdx-4+12)%12, fA=(rootIdx-9+12)%12;
+  const pick = (fE<=fA? 'E':'A');
+  if(pick==='E'){
+    const f=fE||12;
+    let s = minor? [f,f+2,f+2,f,f,f] : [f,f+2,f+2,f+1,f,f];
+    if(seventh) s = minor? [f,f+2,f,f,f,f] : [f,f+2,f,f+1,f,f];
+    return s;
+  } else {
+    const f=fA||12;
+    let s = minor? [-1,f,f+2,f+2,f+1,f] : [-1,f,f+2,f+2,f+2,f];
+    if(seventh) s = minor? [-1,f,f+2,f,f+1,f] : [-1,f,f+2,f,f+2,f];
+    return s;
+  }
+}
+function shapeFor(chord){
+  if(SHAPES[chord]) return SHAPES[chord];
+  const p=parseChord(chord); if(!p) return null;
+  const minor=/^m(?!aj)/.test(p.rest);
+  const seventh=/7/.test(p.rest);
+  const base = NOTES[p.idx] + (minor?'m':'') + (seventh?'7':'');
+  if(SHAPES[base]) return SHAPES[base];
+  return barreShape(p.idx, minor, seventh);
+}
+function diagramSVG(chord){
+  const shape = shapeFor(chord);
+  const W=68,H=84, x0=12,y0=18, sw=(W-24)/5, fh=12, frets=4;
+  let svg=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  const fretted = (shape||[]).filter(f=>f>0);
+  const minF = fretted.length?Math.min(...fretted):1;
+  const base = (minF>1 && Math.max(...fretted)>frets)? minF : 1;
+  for(let i=0;i<=frets;i++){ const y=y0+i*fh; svg+=`<line x1="${x0}" y1="${y}" x2="${x0+sw*5}" y2="${y}" stroke="#3a4150" stroke-width="${i===0&&base===1?3:1}"/>`;}
+  for(let i=0;i<6;i++){ const x=x0+i*sw; svg+=`<line x1="${x}" y1="${y0}" x2="${x}" y2="${y0+fh*frets}" stroke="#3a4150" stroke-width="1"/>`;}
+  if(base>1) svg+=`<text x="${x0-6}" y="${y0+fh-2}" fill="#98a2b3" font-size="9" text-anchor="end">${base}fr</text>`;
+  (shape||[]).forEach((f,i)=>{
+    const x=x0+i*sw;
+    if(f<0){ svg+=`<text x="${x}" y="${y0-4}" fill="#98a2b3" font-size="10" text-anchor="middle">×</text>`; }
+    else if(f===0){ svg+=`<circle cx="${x}" cy="${y0-6}" r="3.2" fill="none" stroke="#98a2b3" stroke-width="1.4"/>`; }
+    else { const y=y0+(f-base)*fh+fh/2; svg+=`<circle cx="${x}" cy="${y}" r="4.6" fill="#ff7a45"/>`; }
+  });
+  svg+=`</svg>`;
+  return svg;
+}
+
+// Con cejilla en el traste N, un acorde que SUENA como X se digita con la forma de (X - N).
+// Por eso al mostrar los acordes restamos el capo: aparecen las formas fáciles que tocas.
+function effectiveChord(raw){ return transposeChord(raw, state.transpose - state.capo); }
+
+// --- Detección/sugerencia de capo (cejilla) ---
+// Acordes abiertos fáciles: mayores C,D,E,G,A  ·  menores Dm,Em,Am
+const EASY_MAJ = new Set([0,2,4,7,9]);
+const EASY_MIN = new Set([2,4,9]);
+function chordIsEasy(idx, minor){ return minor ? EASY_MIN.has(idx) : EASY_MAJ.has(idx); }
+function suggestCapo(song){
+  if(!song || !song.chords) return 0;
+  let best=0, bestScore=-1;
+  for(let k=0;k<=7;k++){
+    let score=0, total=0;
+    for(const c of song.chords){
+      if(!c.chord || c.chord==='N') continue;
+      const p=parseChord(c.chord); if(!p) continue;
+      total++;
+      const minor=/^m(?!aj)/.test(p.rest);
+      const fingered=(p.idx - k + 1200)%12;
+      if(chordIsEasy(fingered, minor)) score++;
+    }
+    const adj = score - k*0.05; // a igualdad, preferir capo bajo
+    if(total>0 && adj>bestScore){ bestScore=adj; best=k; }
+  }
+  return best;
+}
+
+function renderTimeline(){
+  const tl=document.getElementById('timeline');
+  if(!state.song || !state.song.chords || !state.song.chords.length){
+    tl.innerHTML='<div class="hint">Aún no hay acordes. Carga una canción.</div>'; return;
+  }
+  let html=''; let lastSection=null; let lineOpen=false; let colCount=0;
+  const openLine=()=>{ html+='<div class="line">'; lineOpen=true; colCount=0; };
+  const closeLine=()=>{ if(lineOpen){ html+='</div>'; lineOpen=false; } };
+  state.song.chords.forEach((c,i)=>{
+    if(c.section && c.section!==lastSection){
+      closeLine(); html+=`<div class="line section-label">${c.section}</div>`; lastSection=c.section; openLine();
+    }
+    if(!lineOpen) openLine();
+    const ch=effectiveChord(c.chord);
+    html+=`<span class="beat" data-i="${i}" data-t="${c.t}">
+             <span class="ch">${ch==='N'?'':ch}</span>
+             <span class="ly">${c.lyric?escapeHtml(c.lyric):''}</span></span>`;
+    colCount++;
+    if(colCount>=8){ closeLine(); openLine(); }
+  });
+  closeLine();
+  tl.innerHTML=html;
+  tl.querySelectorAll('.beat').forEach(b=>{
+    b.addEventListener('click',()=>seekTo(parseFloat(b.dataset.t)));
+    b.addEventListener('dblclick',()=>openEdit(parseInt(b.dataset.i)));
+    let press;
+    b.addEventListener('touchstart',()=>{press=setTimeout(()=>openEdit(parseInt(b.dataset.i)),550)},{passive:true});
+    b.addEventListener('touchend',()=>clearTimeout(press));
+  });
+  renderDiagrams();
+}
+function renderDiagrams(){
+  const box=document.getElementById('diagrams');
+  if(!state.song||!state.song.chords){ box.innerHTML=''; return; }
+  const uniq=[...new Set(state.song.chords.map(c=>effectiveChord(c.chord)).filter(c=>c&&c!=='N'))];
+  const note = state.capo>0 ? `<div class="hint" style="grid-column:1/-1;margin-bottom:2px">🎸 Con cejilla en el traste ${state.capo}: estas son las formas que digitas.</div>` : '';
+  box.innerHTML = note + uniq.map(ch=>`<div class="diagram"><div class="name">${ch}</div>${diagramSVG(ch)}</div>`).join('');
+}
+function renderMeta(){
+  document.getElementById('songTitle').textContent = state.song?.title || 'Sin canción';
+  document.getElementById('songSub').textContent = state.song?.artist || '—';
+  const k = state.song?.key ? transposeChord(state.song.key, state.transpose) : null;
+  document.getElementById('keyBadge').textContent = (k?('Tono '+k):'—')
+    + (state.capo>0?(' · Capo '+state.capo):'')
+    + (state.song?.bpm?(' · '+Math.round(state.song.bpm)+' BPM'):'');
+  document.getElementById('tab').textContent = state.song?.tab || 'Sin tablatura para esta canción todavía.';
+}
+function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+let rafId=null;
+function loop(){
+  if(state.player && state.ready && state.song?.chords?.length){
+    const t = state.player.getCurrentTime ? state.player.getCurrentTime() : 0;
+    updateActive(t);
+  }
+  rafId=requestAnimationFrame(loop);
+}
+let lastActive=-1;
+function updateActive(t){
+  const chords=state.song.chords;
+  let idx=-1;
+  for(let i=0;i<chords.length;i++){ if(chords[i].t<=t+0.05) idx=i; else break; }
+  const cur = idx>=0? effectiveChord(chords[idx].chord):'–';
+  document.getElementById('nowChord').textContent = (cur==='N'?'–':cur);
+  const nx=document.getElementById('nextChords');
+  let seen=[]; let j=idx+1;
+  while(j<chords.length && seen.length<4){
+    const c=effectiveChord(chords[j].chord);
+    if(c!=='N' && (seen.length===0 || seen[seen.length-1]!==c)) seen.push(c);
+    j++;
+  }
+  nx.innerHTML = seen.map(c=>`<span class="pill">${c}</span>`).join('') || '<span class="hint">fin</span>';
+  if(idx!==lastActive){
+    const tl=document.getElementById('timeline');
+    tl.querySelectorAll('.beat').forEach(b=>{
+      const bi=parseInt(b.dataset.i);
+      b.classList.toggle('active', bi===idx);
+      b.classList.toggle('past', bi<idx);
+    });
+    if(state.autoscroll && idx>=0){
+      const el=tl.querySelector(`.beat[data-i="${idx}"]`);
+      if(el){ const r=el.getBoundingClientRect();
+        if(r.top<120 || r.bottom>window.innerHeight-180){
+          el.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+      }
+    }
+    lastActive=idx;
+  }
+}
+
+let ytApiReady=false, pendingVideo=null;
+window.onYouTubeIframeAPIReady = function(){ ytApiReady=true; if(pendingVideo) createPlayer(pendingVideo); };
+(function loadYT(){ const s=document.createElement('script'); s.src='https://www.youtube.com/iframe_api'; document.head.appendChild(s); })();
+
+function showPlayerNotice(html){
+  const np=document.getElementById('noplayer');
+  np.style.display='flex'; np.innerHTML=html;
+  const yt=document.getElementById('yt'); if(yt) yt.style.display='none';
+}
+function createPlayer(videoId){
+  // En modo archivo local (file://) YouTube NO permite incrustar: avisar en vez de mostrar Error 153.
+  if(!SERVER){
+    showPlayerNotice(
+      '⚠️ La reproducción de YouTube no funciona abriendo el archivo directamente.<br><br>'+
+      'Arranca <b>servidor.py</b> y abre la app desde <b>http://localhost:8000/</b> '+
+      '(o la dirección de tu wifi en el móvil).<br><br>'+
+      '<a href="https://www.youtube.com/watch?v='+videoId+'" target="_blank" rel="noopener">▶ Ver en YouTube</a>');
+    return;
+  }
+  document.getElementById('noplayer').style.display='none';
+  document.getElementById('yt').style.display='block';
+  if(state.player && state.player.loadVideoById){ state.player.loadVideoById(videoId); state.ready=true; return; }
+  const pv={playsinline:1, rel:0, modestbranding:1};
+  try{ pv.origin = location.origin; }catch(e){}
+  state.player = new YT.Player('yt', {
+    videoId, playerVars:pv,
+    events:{
+      'onReady':()=>{ state.ready=true; try{state.player.setPlaybackRate(state.speed);}catch(e){} },
+      'onStateChange':(e)=>{
+        document.getElementById('playPause').textContent = (e.data===YT.PlayerState.PLAYING)?'❚❚':'▶';
+      },
+      'onError':(e)=>{
+        const msgs={2:'Enlace no válido',5:'Error del reproductor',100:'Vídeo no encontrado o privado',
+          101:'El propietario no permite incrustar este vídeo',150:'El propietario no permite incrustar este vídeo',153:'Abre la app desde servidor.py (http://), no como archivo local'};
+        showPlayerNotice('⚠️ No se puede reproducir aquí: '+(msgs[e.data]||('error '+e.data))+
+          '.<br><br><a href="https://www.youtube.com/watch?v='+videoId+'" target="_blank" rel="noopener">▶ Ver en YouTube</a>');
+      }
+    }
+  });
+}
+function loadVideo(videoId){ if(ytApiReady) createPlayer(videoId); else pendingVideo=videoId; }
+
+function extractVideoId(url){
+  const m = url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
+  return m?m[1]:(/^[A-Za-z0-9_-]{11}$/.test(url.trim())?url.trim():null);
+}
+// Guarda/recupera correcciones del usuario en el navegador (funciona en hosting estático)
+function applyLocalEdits(song){
+  if(!song || !song.id) return song;
+  try{
+    const raw=localStorage.getItem('sf_edit_'+song.id);
+    if(raw){ const e=JSON.parse(raw);
+      if(e.chords) song.chords=e.chords;
+      if(e.tab!=null) song.tab=e.tab;
+    }
+  }catch(_){}
+  return song;
+}
+// Biblioteca estática (biblioteca.json junto a la app) para el modo nube
+let STATIC_LIB=null;
+async function loadStaticLib(){
+  if(STATIC_LIB) return STATIC_LIB;
+  try{ const r=await fetch('./biblioteca.json',{cache:'no-store'}); if(r.ok){ STATIC_LIB=await r.json(); } }catch(e){}
+  return STATIC_LIB||[];
+}
+
+function setSong(song){
+  applyLocalEdits(song);
+  state.song=song; state.transpose=0; lastActive=-1;
+  state.capo = suggestCapo(song);   // detecta el traste de capo recomendado
+  updateTransposeLabels();
+  renderMeta(); renderTimeline();
+  if(song.videoId) loadVideo(song.videoId);
+  switchView('chords');
+  toast(state.capo>0 ? ('🎸 Capo sugerido: traste '+state.capo) : ('🎵 '+(song.title||'Canción')+' lista'));
+}
+
+async function loadFromUrl(){
+  const url=document.getElementById('url').value.trim();
+  if(!url){ toast('Pega un enlace de YouTube'); return; }
+  const vid=extractVideoId(url);
+  if(!vid){ toast('Enlace de YouTube no válido'); return; }
+  if(!SERVER){
+    setSong({title:'Vídeo de YouTube', artist:'(sin análisis — inicia servidor.py)', videoId:vid, chords:[]});
+    toast('Cargado sin acordes. Inicia servidor.py para detectarlos.');
+    return;
+  }
+  toast('⏳ Analizando… (puede tardar 1-2 min)');
+  document.getElementById('loadBtn').textContent='…';
+  try{
+    const r=await fetch(SERVER+'/api/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url})});
+    if(!r.ok) throw new Error(await r.text());
+    const song=await r.json();
+    setSong(song);
+  }catch(e){ toast('Error al analizar: '+e.message); }
+  finally{ document.getElementById('loadBtn').textContent='Cargar'; }
+}
+
+async function openLibrary(){
+  const dlg=document.getElementById('libDlg'); const list=document.getElementById('libList');
+  dlg.showModal(); list.textContent='Cargando…';
+  let serverSongs=[];
+  if(SERVER){
+    try{ const r=await fetch(SERVER+'/api/library'); if(r.ok) serverSongs=await r.json(); }catch(e){}
+  }
+  const stat = await loadStaticLib();           // canciones completas del biblioteca.json de la nube
+  const statList = (stat||[]).map(s=>({id:s.id, title:s.title, artist:s.artist}));
+  const songs = [{title:EXAMPLE.title, artist:EXAMPLE.artist, id:'__example__'}, ...serverSongs, ...statList];
+  list.innerHTML = songs.map(s=>`<div style="padding:10px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px">
+      <div><div style="font-weight:700">${escapeHtml(s.title||'?')}</div><div class="sub">${escapeHtml(s.artist||'')}</div></div>
+      <button class="primary" data-id="${s.id}">Abrir</button></div>`).join('');
+  list.querySelectorAll('button[data-id]').forEach(b=>b.addEventListener('click',async()=>{
+    const id=b.dataset.id; dlg.close();
+    if(id==='__example__'){ setSong(structuredClone(EXAMPLE)); return; }
+    const st=(STATIC_LIB||[]).find(s=>s.id===id);   // primero la biblioteca estática (nube)
+    if(st){ setSong(structuredClone(st)); return; }
+    try{ const r=await fetch(SERVER+'/api/song?id='+encodeURIComponent(id)); setSong(await r.json()); }
+    catch(e){ toast('No se pudo abrir'); }
+  }));
+}
+
+function seekTo(t){ if(state.player&&state.player.seekTo){ state.player.seekTo(t,true); } }
+function togglePlay(){ if(!state.player) return; const st=state.player.getPlayerState();
+  if(st===YT.PlayerState.PLAYING) state.player.pauseVideo(); else state.player.playVideo(); }
+function updateTransposeLabels(){
+  document.getElementById('trLabel').textContent='Tono '+(state.transpose>0?'+':'')+state.transpose;
+  document.getElementById('capoLabel').textContent='Capo '+state.capo;
+  document.getElementById('spLabel').textContent=state.speed.toFixed(2).replace(/0$/,'')+'×';
+}
+function applyTranspose(){ renderMeta(); renderTimeline(); }
+
+document.getElementById('loadBtn').onclick=loadFromUrl;
+document.getElementById('url').addEventListener('keydown',e=>{if(e.key==='Enter')loadFromUrl();});
+document.getElementById('libBtn').onclick=openLibrary;
+document.getElementById('libClose').onclick=()=>document.getElementById('libDlg').close();
+document.getElementById('playPause').onclick=togglePlay;
+document.getElementById('back10').onclick=()=>seekTo((state.player?.getCurrentTime()||0)-10);
+document.getElementById('fwd10').onclick=()=>seekTo((state.player?.getCurrentTime()||0)+10);
+document.getElementById('trUp').onclick=()=>{state.transpose++;updateTransposeLabels();applyTranspose();};
+document.getElementById('trDown').onclick=()=>{state.transpose--;updateTransposeLabels();applyTranspose();};
+document.getElementById('capoUp').onclick=()=>{state.capo=Math.min(11,state.capo+1);updateTransposeLabels();applyTranspose();};
+document.getElementById('capoDown').onclick=()=>{state.capo=Math.max(0,state.capo-1);updateTransposeLabels();applyTranspose();};
+document.getElementById('spUp').onclick=()=>{state.speed=Math.min(1.5,+(state.speed+0.05).toFixed(2));updateTransposeLabels();try{state.player.setPlaybackRate(state.speed)}catch(e){}};
+document.getElementById('spDown').onclick=()=>{state.speed=Math.max(0.5,+(state.speed-0.05).toFixed(2));updateTransposeLabels();try{state.player.setPlaybackRate(state.speed)}catch(e){}};
+document.getElementById('scrollLock').onclick=(e)=>{state.autoscroll=!state.autoscroll;e.target.textContent=state.autoscroll?'🔒':'🔓';toast('Auto-scroll '+(state.autoscroll?'activado':'desactivado'));};
+
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>switchView(b.dataset.view));
+function switchView(v){
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.view===v));
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('on'));
+  document.getElementById('view-'+v).classList.add('on');
+}
+
+function openEdit(i){
+  state.editingIndex=i; const c=state.song.chords[i];
+  document.getElementById('editTime').textContent=c.t.toFixed(1)+'s';
+  document.getElementById('editVal').value=c.chord==='N'?'':c.chord;
+  document.getElementById('editDlg').showModal();
+}
+document.getElementById('editCancel').onclick=()=>document.getElementById('editDlg').close();
+document.getElementById('editSave').onclick=()=>{
+  const v=document.getElementById('editVal').value.trim()||'N';
+  if(state.editingIndex!=null){ state.song.chords[state.editingIndex].chord=v; renderTimeline(); saveEdits(); }
+  document.getElementById('editDlg').close();
+};
+document.getElementById('editTab').onclick=()=>{
+  const cur=state.song?.tab||'';
+  const v=prompt('Tablatura / fingerstyle (texto):', cur);
+  if(v!=null && state.song){ state.song.tab=v; renderMeta(); saveEdits(); }
+};
+async function saveEdits(){
+  if(!state.song?.id) return;
+  // Guardado local (siempre): funciona también en la nube estática
+  try{ localStorage.setItem('sf_edit_'+state.song.id, JSON.stringify({chords:state.song.chords, tab:state.song.tab})); }catch(_){}
+  // Si hay servidor local, guardar también allí
+  if(SERVER){
+    try{ await fetch(SERVER+'/api/song?id='+encodeURIComponent(state.song.id),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(state.song)}); }catch(e){}
+  }
+}
+
+let toastT;
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2600); }
+
+const EXAMPLE = {
+  id:"ejemplo",
+  title:"Ejemplo — Progresión I–V–vi–IV",
+  artist:"StrumFree (demo sin audio real)",
+  videoId:null,
+  key:"G", bpm:96,
+  tab:"Intro (fingerstyle sencillo, patron p-i-m-a):\ne|-----0-------0-----|\nB|---0---0---0---0---|\nG|-0-------0---------|\nD|-------------------|\nA|-------------------|\nE|-3---------3-------|  (G)\n\nRepite el patron cambiando la nota grave: G(6a,3), D(5a,5), Em(6a,0), C(5a,3).",
+  chords:[
+    {t:0,chord:"G",lyric:"", section:"Intro"},{t:2,chord:"D",lyric:""},{t:4,chord:"Em",lyric:""},{t:6,chord:"C",lyric:""},
+    {t:8,chord:"G",lyric:"Yo", section:"Verso"},{t:10,chord:"D",lyric:"can-"},{t:12,chord:"Em",lyric:"to"},{t:14,chord:"C",lyric:"aqui"},
+    {t:16,chord:"G",lyric:"con"},{t:18,chord:"D",lyric:"mi"},{t:20,chord:"Em",lyric:"gui-"},{t:22,chord:"C",lyric:"tarra"},
+    {t:24,chord:"G",lyric:"y", section:"Estribillo"},{t:26,chord:"D",lyric:"sue-"},{t:28,chord:"Em",lyric:"no"},{t:30,chord:"C",lyric:"feliz"},
+    {t:32,chord:"G",lyric:""},{t:34,chord:"D",lyric:""},{t:36,chord:"C",lyric:""},{t:38,chord:"N",lyric:""}
+  ]
+};
+
+renderMeta(); renderTimeline(); updateTransposeLabels();
+loop();
+</script>
+</body>
+</html>

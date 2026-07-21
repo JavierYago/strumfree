@@ -1,0 +1,22 @@
+[
+  {
+    "id": "demo-oceans",
+    "title": "Ejemplo en la nube — Progresión Do-Sol-Lam-Fa",
+    "artist": "StrumFree",
+    "videoId": null,
+    "key": "C",
+    "bpm": 92,
+    "tab": "Patrón de rasgueo sugerido:  D  D U  U D U   (D=abajo, U=arriba)",
+    "chords": [
+      {"t": 0, "chord": "C", "lyric": "", "section": "Verso"},
+      {"t": 2, "chord": "G", "lyric": ""},
+      {"t": 4, "chord": "Am", "lyric": ""},
+      {"t": 6, "chord": "F", "lyric": ""},
+      {"t": 8, "chord": "C", "lyric": ""},
+      {"t": 10, "chord": "G", "lyric": ""},
+      {"t": 12, "chord": "Am", "lyric": ""},
+      {"t": 14, "chord": "F", "lyric": ""},
+      {"t": 16, "chord": "N", "lyric": ""}
+    ]
+  }
+]
