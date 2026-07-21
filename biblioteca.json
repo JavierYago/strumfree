@@ -816,5 +816,581 @@
     "lyric": ""
    }
   ]
+ },
+ {
+  "id": "4bHR4tVcX3g",
+  "title": "Walls - Flores mustias (Visualizer)",
+  "artist": "YouTube",
+  "videoId": "4bHR4tVcX3g",
+  "key": "Gm",
+  "bpm": 89.1,
+  "tab": "",
+  "chords": [
+   {
+    "t": 0.14,
+    "chord": "Am",
+    "lyric": ""
+   },
+   {
+    "t": 0.84,
+    "chord": "F#m",
+    "lyric": ""
+   },
+   {
+    "t": 2.88,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 3.55,
+    "chord": "F#m",
+    "lyric": ""
+   },
+   {
+    "t": 4.23,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 8.34,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 10.38,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 12.42,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 15.14,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 16.51,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 17.88,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 19.25,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 20.6,
+    "chord": "D",
+    "lyric": ""
+   },
+   {
+    "t": 23.34,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 25.36,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 26.05,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 26.73,
+    "chord": "C",
+    "lyric": ""
+   },
+   {
+    "t": 27.42,
+    "chord": "Am",
+    "lyric": ""
+   },
+   {
+    "t": 28.1,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 35.6,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 36.27,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 36.97,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 37.64,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 38.34,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 39.01,
+    "chord": "Dm",
+    "lyric": ""
+   },
+   {
+    "t": 39.68,
+    "chord": "N",
+    "lyric": ""
+   },
+   {
+    "t": 40.38,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 41.73,
+    "chord": "D#",
+    "lyric": ""
+   },
+   {
+    "t": 43.72,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 47.09,
+    "chord": "Dm",
+    "lyric": ""
+   },
+   {
+    "t": 47.69,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 48.34,
+    "chord": "D",
+    "lyric": ""
+   },
+   {
+    "t": 48.99,
+    "chord": "Dm",
+    "lyric": ""
+   },
+   {
+    "t": 49.62,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 50.36,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 51.73,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 52.99,
+    "chord": "D#",
+    "lyric": ""
+   },
+   {
+    "t": 55.73,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 59.14,
+    "chord": "A",
+    "lyric": ""
+   },
+   {
+    "t": 59.81,
+    "chord": "D",
+    "lyric": ""
+   },
+   {
+    "t": 60.46,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 61.02,
+    "chord": "Dm",
+    "lyric": ""
+   },
+   {
+    "t": 61.86,
+    "chord": "D",
+    "lyric": ""
+   },
+   {
+    "t": 62.51,
+    "chord": "Bm",
+    "lyric": ""
+   },
+   {
+    "t": 63.2,
+    "chord": "D",
+    "lyric": ""
+   },
+   {
+    "t": 63.83,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 67.64,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 68.34,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 69.01,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 69.68,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 71.73,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 72.42,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 78.55,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 79.25,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 79.92,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 81.29,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 83.34,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 88.79,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 91.51,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 94.23,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 94.81,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 96.97,
+    "chord": "N",
+    "lyric": ""
+   },
+   {
+    "t": 98.34,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 99.01,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 99.68,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 100.38,
+    "chord": "N",
+    "lyric": ""
+   },
+   {
+    "t": 101.75,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 102.42,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 104.47,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 105.14,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 108.55,
+    "chord": "D",
+    "lyric": ""
+   },
+   {
+    "t": 109.25,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 109.92,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 110.6,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 111.29,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 114.01,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 114.71,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 115.38,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 116.26,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 117.63,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 121.07,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 123.79,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 127.29,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 127.99,
+    "chord": "D",
+    "lyric": ""
+   },
+   {
+    "t": 129.29,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 133.1,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 135.14,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 137.88,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 144.01,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 144.68,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 145.38,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 147.42,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 148.1,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 148.79,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 154.25,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 156.29,
+    "chord": "A#",
+    "lyric": ""
+   },
+   {
+    "t": 156.97,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 159.68,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 164.47,
+    "chord": "D#",
+    "lyric": ""
+   },
+   {
+    "t": 165.14,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 167.18,
+    "chord": "D#",
+    "lyric": ""
+   },
+   {
+    "t": 167.86,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 170.6,
+    "chord": "Dm",
+    "lyric": ""
+   },
+   {
+    "t": 171.27,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 176.73,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 178.79,
+    "chord": "F",
+    "lyric": ""
+   },
+   {
+    "t": 180.84,
+    "chord": "N",
+    "lyric": ""
+   },
+   {
+    "t": 181.51,
+    "chord": "Gm",
+    "lyric": ""
+   },
+   {
+    "t": 186.97,
+    "chord": "A#m",
+    "lyric": ""
+   },
+   {
+    "t": 190.38,
+    "chord": "Fm",
+    "lyric": ""
+   },
+   {
+    "t": 191.73,
+    "chord": "N",
+    "lyric": ""
+   },
+   {
+    "t": 192.61,
+    "chord": "G",
+    "lyric": ""
+   },
+   {
+    "t": 194.65,
+    "chord": "N",
+    "lyric": ""
+   }
+  ]
  }
 ]
